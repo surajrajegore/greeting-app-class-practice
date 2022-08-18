@@ -20,4 +20,10 @@ public class GreetingServiceImpl implements GreetingService{
         return greetingRepository.save(new Greeting(counter.incrementAndGet(),
                 (user.toString().isEmpty()) ? "Hello World" : user.toString()));
     }
+
+    @Override
+    public Greeting getGreetingById(long id) {
+        return greetingRepository.findById(id).get();
+    }
+
 }

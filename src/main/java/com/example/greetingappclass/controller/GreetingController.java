@@ -4,10 +4,7 @@ import com.example.greetingappclass.entity.Greeting;
 import com.example.greetingappclass.entity.User;
 import com.example.greetingappclass.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -28,6 +25,10 @@ public class GreetingController {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         return greetingService.addGreeting(user);
+    }
 
+    @GetMapping("/findById/{id}")
+    public  Greeting findGreetingById(@PathVariable long id){
+        return greetingService.getGreetingById(id);
     }
 }
