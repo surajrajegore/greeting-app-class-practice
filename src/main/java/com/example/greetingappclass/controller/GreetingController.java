@@ -4,8 +4,10 @@ import com.example.greetingappclass.entity.Greeting;
 import com.example.greetingappclass.entity.User;
 import com.example.greetingappclass.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -30,5 +32,10 @@ public class GreetingController {
     @GetMapping("/findById/{id}")
     public  Greeting findGreetingById(@PathVariable long id){
         return greetingService.getGreetingById(id);
+    }
+
+    @GetMapping("/getList")
+    public ResponseEntity<List<Greeting>> getAllMessages(){
+        return ResponseEntity.ok().body(greetingService.getAllUser());
     }
 }
