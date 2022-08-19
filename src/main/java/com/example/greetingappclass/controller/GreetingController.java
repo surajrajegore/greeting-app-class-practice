@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
@@ -37,5 +38,10 @@ public class GreetingController {
     @GetMapping("/getList")
     public ResponseEntity<List<Greeting>> getAllMessages(){
         return ResponseEntity.ok().body(greetingService.getAllUser());
+    }
+
+    @PutMapping("/editById/{id}")
+    public Optional<Greeting> updateGreeting(Greeting greeting, @PathVariable("id") Long id) {
+        return greetingService.updateGreeting(greeting, id);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
@@ -30,6 +31,14 @@ public class GreetingServiceImpl implements GreetingService{
     @Override
     public List<Greeting> getAllUser() {
         return this.greetingRepository.findAll();
+    }
+
+    @Override
+    public Optional<Greeting> updateGreeting(Greeting greeting, Long id) {
+        Optional<Greeting> greetingObject = greetingRepository.findById(id);
+        greetingObject.get().setMessage(greeting.getMessage());
+        greetingRepository.save(greetingObject.get());
+        return greetingObject;
     }
 
 
